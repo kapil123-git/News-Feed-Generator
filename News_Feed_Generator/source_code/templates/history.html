@@ -1,0 +1,177 @@
+<html>
+    <head>
+        <title>News Feed Generator</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            #green { 
+            height: 100%; 
+            background: green; 
+            text-align: center; 
+            color: black; 
+            padding: 15px; 
+        } 
+        
+
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid "> 
+                
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand ms-3" href="{{url_for('news.recommend')}}">News Feed Generator</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <form action = "http://localhost:5000/update" method = "POST">
+                        <button class="btn btn-outline-danger mt-3" type="submit">Update Today's News</button>
+                    </form>
+                    <ul class="navbar-nav mb-2 me-3 mb-lg-0 ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Welcome, {{name}}</a>
+                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('news.about')}}">About Us</a>
+                    </li>
+                    </ul>
+                    
+                    <form action = "http://localhost:5000/logout" method = "POST">
+                        <button class="btn btn-outline-success mt-3" type="submit">Logout</button>
+                    </form>
+                </div>
+            </nav>
+               
+                <div class="row h-100">
+                    <div class="col-2 navbar-light bg-light" id="green">     
+                            <ul class="navbar-nav mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <p style="font-weight:200"> Topics</p>
+                                    <hr size="6" width="95%"> 
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    {% if selection == 'Top' %}
+                                    <div  style="border: 1px solid rgb(61, 9, 9); border-radius: 10px;">
+                                    {% else %}
+                                    <div>
+                                    {% endif %}
+                                    <a class="nav-link "style="font-weight:600" href="{{url_for('news.recommend')}}"><i class="fa fa-newspaper-o me-3" ></i>All</a>
+                                    </div>
+                                </li>
+                                
+                                <li id="recommend_business" class="nav-item">
+                                    {% if selection == 'Business' %}
+                                    <div  style="border: 1px solid rgb(61, 9, 9); border-radius: 10px;">
+                                    {% else %}
+                                    <div >
+                                    {% endif %}
+                                    <a class="nav-link "style="font-weight:600" href="{{url_for('news.recommend_business')}}"><i class="fa fa-briefcase me-3" ></i>Business</a>
+                                    </div>
+                                </li>
+                                <li id="recommend_entertainment" class="nav-item ">
+                                    {% if selection == 'Entertainment' %}
+                                    <div id="recommend"  style="border: 1px solid rgb(61, 9, 9); border-radius: 10px;">
+                                    {% else %}
+                                    <div id="recommend">
+                                    {% endif %}
+                                    <a class="nav-link" style="font-weight:600" href="{{url_for('news.recommend_entertainment')}}"><i class="fa fa-film me-3" ></i>Entertainment</a>
+                                    </div>
+                                </li>
+                                <li id="recommend_general" class="nav-item">
+                                    {% if selection == 'General' %}
+                                    <div id="recommend"  style="border: 1px solid rgb(61, 9, 9); border-radius: 10px;">
+                                    {% else %}
+                                    <div id="recommend">
+                                    {% endif %}
+                                    <a class="nav-link" style="font-weight:600" href="{{url_for('news.recommend_general')}}"><i class="fa fa-globe me-3" ></i>General</a>
+                                    </div>
+                                </li>
+                                <li id="recommend_science" class="nav-item">
+                                    {% if selection == 'Science' %}
+                                    <div id="recommend"  style="border: 1px solid rgb(61, 9, 9); border-radius: 10px;">
+                                    {% else %}
+                                    <div id="recommend">
+                                    {% endif %}
+                                    <a class="nav-link" style="font-weight:600" href="{{url_for('news.recommend_science')}}"><i class="fa fa-flask me-3" ></i>Science</a>
+                                    </div>
+                                </li>
+                                <li id="recommend_sports" class="nav-item">
+                                    {% if selection == 'Sports' %}
+                                    <div id="recommend"  style="border: 1px solid rgb(61, 9, 9); border-radius: 10px;">
+                                    {% else %}
+                                    <div id="recommend">
+                                    {% endif %}
+                                    <a class="nav-link" style="font-weight:600" href="{{url_for('news.recommend_sports')}}"><i class="fa fa-soccer-ball-o me-3" ></i>Sports</a>
+                                    </div>
+                                </li>
+                                <li id="recommend_technology" class="nav-item">
+                                    {% if selection == 'Technology' %}
+                                    <div id="recommend"  style="border: 1px solid rgb(61, 9, 9); border-radius: 10px;">
+                                    {% else %}
+                                    <div id="recommend">
+                                    {% endif %}
+                                    <a class="nav-link" style="font-weight:600" href="{{url_for('news.recommend_technology')}}"><i class="fa fa-tv me-3" ></i>Technology</a>
+                                    </div>
+                                </li>
+                                <li id="recommend_history" class="nav-item">
+                                    
+                                    <div id="recommend"  style="border: 1px solid rgb(61, 9, 9); border-radius: 10px;">
+                                    <a class="nav-link" style="font-weight:600" href="{{url_for('news.history')}}"><i class="fa fa-history me-3" ></i>History</a>
+                                    </div>
+                                </li>
+                                </ul>
+                    </div>
+                    
+                    <div class="col-10">
+                        <div class="container-fluid">
+                            <form action = "http://localhost:5000/history_clear" method = "POST">
+                            <div class="row">
+                                <div class="col-9">
+                                    <h2 class="mt-4 ms-5"style="font-weight: 300;">History</h2>
+                                </div>
+                                
+                                <div class="col-2 mt-4 ms-5">
+                                    <button type="submit" name="val" value=r class="btn btn-primary">Clear History</button>
+                                </div>
+                            </div>
+                            <hr>
+                            
+                                <div class="row" style="margin-top: 65px; margin-left:25px;">
+                                    <table style="width:100%">
+                                        <tr>
+                                          <th style="border: 1px solid black;border-collapse: collapse;padding: 15px;">News Title</th>
+                                          <th style="border: 1px solid black;border-collapse: collapse;padding: 15px;">News Text</th> 
+                                          <th style="border: 1px solid black;border-collapse: collapse;padding: 15px;">Topic</th>
+                                        </tr>
+                                        {% for i in data %}
+                                        <tr>
+                                          <td style="border: 1px solid black;border-collapse: collapse;padding: 15px;">{{i.news_title}}</td>
+                                          <td style="border: 1px solid black;border-collapse: collapse;padding: 15px;">{{i.news_text}}</td> 
+                                          <td style="border: 1px solid black;border-collapse: collapse;padding: 15px;">{{i.news_topic}}</td>
+                                          
+                                        </tr>
+                                        
+                                        {% endfor %}
+                                      </table>
+                                </div>
+                                    <!-- <button type="submit" name="val" value=r style="border-radius:20px; margin-left: 80%;"><img src="../static/refresh.jpeg" height="100" width="100"></button><br> -->
+                              </form>
+
+
+                             
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer align-content-center">
+                        <h6 class="me-5">&copy;2020 News Feed Generator. All rights are reserved.</h6>
+                    </div>
+                </div>
+                
+        </div>
+        
+    </body>
+</html>

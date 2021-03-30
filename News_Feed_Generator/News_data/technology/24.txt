@@ -1,0 +1,3 @@
+https://xbarapp.com/public/img/xbar-menu-preview.png
+xbar, the BitBar reboot
+xbar lets you put the output of any executable script or program into your macOS menu bar

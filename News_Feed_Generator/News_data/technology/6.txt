@@ -1,0 +1,3 @@
+https://cdn.arstechnica.net/wp-content/uploads/2020/11/zeroday-760x380.jpg
+“Expert” hackers used 11 0-days to infect Windows, iOS, and Android users
+The breadth and abundance of exploits for unknown vulnerabilities sets group apart.

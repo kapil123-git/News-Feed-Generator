@@ -1,0 +1,2 @@
+https://en.gravatar.com/userimage/4935940/3f36deb2aefc09c0bcd985db2458f2b5.png
+Interfaces and Protocols in Python
